@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>age calculator app</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <section id="input-label">
+        <div>
+          <label for="">DAY</label> <br />
+          <input type="number" id="day" />
+        </div>
+
+        <div>
+          <label for="">MONTH</label> <br />
+          <input type="number" id="month" />
+        </div>
+
+        <div>
+          <label for="">YEAR</label> <br />
+          <input type="number" id="year" />
+        </div>
+      </section>
+
+      <section id="line-btn">
+        <hr />
+       <img src="this arraw.png" alt="arrow down picture">  
+      </section>
+
+      <section id="outputs">
+        <h1><span id="spanYear">--</span> years</h1>
+        <h1><span id="spanMonth">--</span> months</h1>
+        <h1><span id="spanDay">--</span> days</h1>
+        
+      </section>
+    </main>
+
+    <script>
+      let today = new Date();
+
+      let d = today.getDate();
+      let m = today.getMonth() + 1;
+      let y = today.getFullYear();
+ 
+
+      document.querySelector("img").addEventListener("click", function(day, month, year){
+          day = document.querySelector("#day").value;
+          month = document.querySelector("#month").value;
+          year = document.querySelector("#year").value;
+
+
+          if(day == "" || month == "" || year == ""){
+             window.alert("The fields must not leave empty!");
+          }
+          else if((day <= 0 || day >= 32) || (month <= 0 || month >= 13) || year > y){
+            window.alert("Invalid input");
+          } 
+          else{
+          const forMonth = [,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+          
+         let myCountDay = (forMonth[m] - d) + parseInt(day);
+         
+         let myCountYear = y - year;
+         if(m <= month){
+            m = m + 12;
+         }
+       
+         let myCountMonth = m - month;
+        
+         document.querySelector("#spanYear").innerHTML = myCountYear;
+         document.querySelector("#spanMonth").innerHTML = myCountMonth;
+         document.querySelector("#spanDay").innerHTML = myCountDay;
+
+          }
+          
+        });
+    </script>
+  </body>
+</html>
